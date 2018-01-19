@@ -1,0 +1,40 @@
+"ticker",
+"m_60",
+"dist_low",
+"dif_diff",  离散化
+"m_20",
+"low_2",    离散
+"low_1",    离散
+"surpass",  分类
+"down",
+"sz20_pos"
+"hs_m_20",
+"hs60_pos",
+"sz_m_60",
+"hs20_pos",
+"sz_m_20"
+"sz60_pos",
+"hs_m_60",
+"buy_60_pos",
+"buy_20_pos",
+"date",
+"growth_rate",
+"cal_market_cap", 离散化, 对业务理解
+"30_avg_growth_rate"
+
+
+then use PCA
+
+
+
+
+
+pipe = Pipeline([
+        ('classify', VotingClassifier(estimators=[('lr', LogisticRegression(random_state=0, max_iter=1000)), ('rf', RandomForestClassifier(n_estimators=100, max_depth=15)), ('gnb', GaussianNB())], voting='hard'))
+    ])
+
+    param_grid = [
+        {
+            'classify__lr__C': [0.1, 1.0, 10.0, 50.0, 100.0]
+        }
+    ]
